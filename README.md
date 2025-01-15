@@ -2,6 +2,8 @@
 
 <div align="center"><img width="200" src="logo.jpg"/></div>
 
+For more information,
+please visit https://vision-mamba-mender.github.io/.
 ## Requirements
 
 - causal_conv1d: ```pip install causal-conv1d```
