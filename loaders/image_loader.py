@@ -5,7 +5,8 @@ from torchvision import datasets
 # from torchvision.datasets import ImageFolder
 from loaders.image_dataset import ImageDataset
 from loaders.image_mask_dataset import ImageMaskDataset
-from loaders.image_mask_transforms import Normalize, ToTensor, Resize, RandomHorizontalFlip, RandomResizedCrop, ColorJitter, Compose, CenterCrop
+from loaders.image_mask_transforms import Normalize, ToTensor, Resize, RandomHorizontalFlip, RandomResizedCrop, Compose
+from torchvision.transforms import ColorJitter, CenterCrop
 from torchvision.transforms import InterpolationMode
 # from loaders.data_enhance import create_transform, create_transform_mask
 

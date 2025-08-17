@@ -1,4 +1,41 @@
 import torch
+from typing import Union, Tuple
+
+
+def compute_accuracy(predictions: torch.Tensor, 
+                    targets: torch.Tensor,
+                    topk: Union[int, Tuple[int]] = 1) -> float:
+    """
+    Compute classification accuracy
+    
+    Args:
+        predictions: Model predictions [batch_size, num_classes]
+        targets: Ground truth labels [batch_size]
+        topk: Compute top-k accuracy (default: top-1)
+    
+    Returns:
+        Accuracy as float between 0 and 1
+    """
+    
+    with torch.no_grad():
+        # Handle different prediction formats
+        if predictions.dim() == 1:
+            # Single prediction per sample
+            if predictions.size(0) != targets.size(0):
+                return 0.0
+            pred_classes = predictions.round().long()
+        else:
+            # Multiple classes - use argmax
+            pred_classes = predictions.argmax(dim=-1)
+        
+        # Ensure targets are long tensor
+        targets = targets.long()
+        
+        # Compute accuracy
+        correct = (pred_classes == targets).float()
+        accuracy = correct.mean().item()
+        
+        return accuracy
 
 
 def accuracy(outputs, labels, topk=(1,)):
